@@ -89,3 +89,42 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int sys_exit2(void)
+{
+    int status;
+
+    if(argint(0, &status) < 0)
+        return -1;
+    return exit2(status);
+}
+
+int
+sys_wait2(void)
+{
+    int* status;
+
+    if(argint(0,(int*)&status) < 0)
+        return -1;
+    return wait2(status);
+
+}
+
+int
+sys_waitpid(void){
+
+    int pid;
+    int *status;
+    int options;
+
+    if((argint(0,&pid) < 0) &&  (argint(1,(int*)&status) < 0) && (argint(0,&options) < 0 )   )
+        return -1;
+    return waitpid(pid, status, options);
+
+}
+
+int
+sys_hello(void){
+    hello();
+    return 0;
+}

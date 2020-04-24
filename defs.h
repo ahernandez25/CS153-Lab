@@ -105,6 +105,7 @@ int             pipewrite(struct pipe*, char*, int);
 // proc.c
 int             cpuid(void);
 void            exit(void);
+
 int             fork(void);
 int             growproc(int);
 int             kill(int);
@@ -120,7 +121,10 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-
+int             exit2(int);
+int             wait2(int*);
+int             waitpid(int, int*, int);
+void            hello(void);
 // swtch.S
 void            swtch(struct context**, struct context*);
 
